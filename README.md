@@ -159,8 +159,9 @@ We use [Chroma embedding database](https://github.com/chroma-core/chroma) as the
 For the entire installation process of DB-GPT, we use the miniconda3 virtual environment. Create a virtual environment and install the Python dependencies.
 ```
 python>=3.10
-conda create -n dbgpt_env python=3.10
-conda activate dbgpt_env
+conda create -n dbgpt python=3.10.9
+conda activate dbgpt
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 pip install -r requirements.txt
 ```
 
