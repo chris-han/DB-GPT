@@ -155,6 +155,14 @@ This project relies on a local MySQL database service, which you need to install
 ```bash
 $ docker run --name=mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=aa12345678 -dit mysql:latest
 ```
+
+This command will output the IP address of the container, which you can use to access the container from within WSL. 
+Update the .env file with the IP for database.
+```bash
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql
+```
+
+
 We use [Chroma embedding database](https://github.com/chroma-core/chroma) as the default for our vector database, so there is no need for special installation. If you choose to connect to other databases, you can follow our tutorial for installation and configuration. 
 For the entire installation process of DB-GPT, we use the miniconda3 virtual environment. Create a virtual environment and install the Python dependencies.
 ```
@@ -170,6 +178,9 @@ You can refer to this document to obtain the Vicuna weights: [Vicuna](https://gi
 
 If you have difficulty with this step, you can also directly use the model from [this link](https://huggingface.co/Tribbiani/vicuna-7b) as a replacement.
 
+Create a dir 'models' at the root, and copy model 'vicuna-7b-1.1' to it.
+Modify pilot/configs/model_config.py if necessary: "vicuna-7b": os.path.join(MODEL_PATH, "vicuna-7b-1.1"),
+Update '.env' to use 'vicuna-7b'
 1. Run server
 ```bash
 $ python pilot/server/llmserver.py

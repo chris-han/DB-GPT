@@ -26,7 +26,7 @@ DEVICE = (
 LLM_MODEL_CONFIG = {
     "flan-t5-base": os.path.join(MODEL_PATH, "flan-t5-base"),
     "vicuna-13b": os.path.join(MODEL_PATH, "vicuna-13b"),
-    "vicuna-7b": os.path.join(MODEL_PATH, "vicuna-7b"),
+    "vicuna-7b": os.path.join(MODEL_PATH, "vicuna-7b-1.1"),
     "text2vec": os.path.join(MODEL_PATH, "text2vec-large-chinese"),
     "sentence-transforms": os.path.join(MODEL_PATH, "all-MiniLM-L6-v2"),
     "codegen2-1b": os.path.join(MODEL_PATH, "codegen2-1B"),
