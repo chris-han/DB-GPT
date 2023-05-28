@@ -161,7 +161,24 @@ Update the .env file with the IP for database.
 ```bash
 $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql
 ```
+Run docker with remote connection enabled
+```bash
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=aa12345678 -p 3306:3306 -d mysql:latest --bind-address=0.0.0.0
+```
+Check from WSL that mysql container is listening on 3306 
+```bash
+sudo netstat -tlnp | grep 3306
+```
 
+Start bash shell:
+```bash
+docker exec -it mysqldb bash
+```
+
+Once you have a Bash shell inside the container, you can log into the MySQL server:
+```bash
+mysql -u root -p
+```
 
 We use [Chroma embedding database](https://github.com/chroma-core/chroma) as the default for our vector database, so there is no need for special installation. If you choose to connect to other databases, you can follow our tutorial for installation and configuration. 
 For the entire installation process of DB-GPT, we use the miniconda3 virtual environment. Create a virtual environment and install the Python dependencies.
@@ -171,6 +188,10 @@ conda create -n dbgpt python=3.10.9
 conda activate dbgpt
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 pip install -r requirements.txt
+```
+config .env for Mysql db to 0.0.0.0
+```bash
+LOCAL_DB_HOST=0.0.0.0
 ```
 
 ### 3. Run
